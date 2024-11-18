@@ -16,12 +16,18 @@ header {
   margin: 0 auto;
 }
 
-h1, h2, h3 {
-    font-family: "Outfit", sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Outfit", sans-serif;
+}
+
+#logo {
+  height: 20vh;
 }
 
 #logo img {
-  width: 15%;
+  width: 10vw;
   margin: 4em 0;
 }
 
@@ -75,7 +81,7 @@ input[type="checkbox"] {
 }
 
 #check label {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 #proceed button {
@@ -104,22 +110,21 @@ footer {
   height: 10vh;
 }
 
-
-
 /* ----- Exam page ----- */
 
 #timer {
-    float: right;
+  float: right;
 }
 
-#exam {
-    text-align: center;
+#exam,
+#questionNumber {
+  text-align: center;
 }
 
 #question {
-    font-size: 4em;
-    font-weight: normal;
-    margin-bottom: 2em;
+  font-size: 3.5em;
+  font-weight: normal;
+  margin-bottom: 1.5em;
 }
 
 #timer {
@@ -127,32 +132,84 @@ footer {
 }
 
 .option {
-    width: 35%;
-    height: 5em;
-    margin: 2em;
-    border-radius: 25px;
-    border: 3px solid white;
-    border-bottom: transparent;
-    background-color: transparent;
-    color: white;
+  min-width: 450px;
+  height: 5em;
+  margin: 2em;
+  border: transparent;
+  border-radius: 40px;
+  box-shadow: 3px -1px 3px white, -2px -2px 3px white;
+  background-color: rgb(255, 255, 255, 10%);
+  color: white;
+  font-size: 1em;
 }
 
+.option:hover {
+  background-color: #d20094;
+}
 
-
-
+#questionNumber {
+  margin-top: 3em;
+  font-weight: 400;
+  font-size: 1.5em;
+}
 
 /* ----- Result page ----- */
 
-main h1{
-  font-size: 32px;
-  margin: 10px 0;
+#results {
+  text-align: center;
+  height: 75vh;
+  font-size: 2em;
+  font-family: "Outfit", sans-serif;
 }
-main p{
-  
+
+#results h1 {
+  margin: 0;
 }
 
+#summary {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
 
+#results section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2em;
+  height: 50vh;
+}
 
+#correct, #wrong {
+    line-height: 0;
+}
+
+#correct {
+    text-align: left;
+}
+
+#wrong{
+    text-align: right;
+}
+
+#percentageCorrect, #percentageWrong{
+    font-weight: bold;
+}
+
+#questionsCorrect, #questionsWrong {
+    font-size: 0.4em;
+}
+
+#rate {
+  margin: 2em;
+  width: 180px;
+  height: 60px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+  font-size: 0.5em;
+  cursor: pointer;
+}
 
 /* ----- Feedback page ----- */
 
@@ -169,12 +226,12 @@ main p{
 }
 
 #stars {
-    margin: 3em 0 4em 0;
+  margin: 3em 0 4em 0;
 }
 
 #star {
-    cursor: pointer;
-    margin: 5px;
+  cursor: pointer;
+  margin: 5px;
 }
 
 #feedback input {
@@ -199,5 +256,3 @@ main p{
   background-color: #00ffff;
   box-shadow: 3px 3px 1.2em #00ffff, -3px -3px 1.2em #00ffff;
 }
-
-

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Result</title>
+    <title>Exam Results</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,32 +15,49 @@
 </head>
 
 <body>
+
     <header id="logo">
+
         <img src="Assets/Images/epicode_logo.png" alt="Logo Epicode" />
+
     </header>
-    <main>
 
-        <h1>Result<h1>
-                <p>The summary of your answer:<p>
-                <div id="grafico">
-                    <p id="res"><br><strong id="text"></strong></p>
-                    <p id="small_text"></p>
-                </div>
-                <div id="correct">
-                    <p>Correct
-                    <p>
-                    <h2></h2>
-                    <p></p>
-                </div>
-                <div id="wrong">
-                    <p>Wrong
-                    <p>
-                    <h2></h2>
-                    <p></p>
-                </div>
+    <main id="results">
 
-                <button id="rate">RATE US</button>
+        <h1>Results</h1>
+
+        <p id="summary">The summary of your answer:</p>
+
+        <section>
+            <div id="correct">
+
+                <p>Correct</p>
+                <p id="percentageCorrect">60%</p>
+                <p id="questionsCorrect">4/6 questions</p>
+
+            </div>
+
+            <div id="graphic">
+
+                <p id="result"><br><strong id="text"></strong></p>
+                <p id="resultText"></p>
+
+            </div>
+
+            <div id="wrong">
+
+                <p>Wrong</p>
+                <p id="percentageWrong">40%</p>
+                <p id="questionsWrong">2/6 questions</p>
+
+            </div>
+        </section>
+
+
+        <button id="rate">RATE US</button>
     </main>
+
+
     <script src="Assets/Js/script.js"></script>
 </body>
 
