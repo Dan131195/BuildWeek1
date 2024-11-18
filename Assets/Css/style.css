@@ -21,6 +21,8 @@ header {
   margin: 4em 0;
 }
 
+/* Welcome page */
+
 #instructions {
   width: 70%;
   font-size: 20px;
@@ -96,3 +98,53 @@ input[type="checkbox"] {
 footer {
   height: 10vh;
 }
+
+/* Exam page */
+
+
+
+
+/*Result page */
+
+
+
+
+
+/* Feedback page */
+
+#feedback {
+  text-align: center;
+  font-size: 1.5em;
+  width: 60%;
+}
+
+#feedbackTitle {
+  font-size: 2em;
+}
+
+#feedback input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #d20094;
+  width: 80%;
+  height: 40px;
+  font-size: 1em;
+  padding-left: 30px;
+}
+
+#stars {
+    margin: 20px;
+}
+
+#feedback button {
+  cursor: pointer;
+  width: 12em;
+  height: 3em;
+  margin-top: 5%;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  background-color: #00ffff;
+  box-shadow: 3px 3px 1.2em #00ffff, -3px -3px 1.2em #00ffff;
+}
+
