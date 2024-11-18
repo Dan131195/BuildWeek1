@@ -69,8 +69,10 @@ input[type="checkbox"] {
   font: inherit;
   width: 1.5em;
   height: 1.5em;
-  color: transparent;
-  border: 10px solid black;
+}
+
+#check label {
+    margin-left: 10px;
 }
 
 #proceed button {
