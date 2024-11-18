@@ -47,17 +47,22 @@ header {
 }
 
 #instructionList li {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
 
 #proceed {
   margin-top: 5em;
   width: 100%;
-  display: flex;
-  align-items: center;
 }
 
-input[type='checkbox'] {
+#proceed,
+#check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="checkbox"] {
   cursor: pointer;
   font: inherit;
   width: 1.5em;
@@ -80,14 +85,14 @@ input[type='checkbox'] {
 }
 
 #errorProceded {
-    color:red;
-    visibility: hidden;
- }
- 
- .isDisplay {
-    visibility: visible !important;
- }
- 
+  color: red;
+  visibility: hidden;
+}
+
+.isDisplay {
+  visibility: visible !important;
+}
+
 footer {
-    height: 10vh;
+  height: 10vh;
 }
