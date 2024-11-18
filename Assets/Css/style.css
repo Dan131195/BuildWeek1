@@ -6,7 +6,7 @@ body {
   background-image: url("../Images/bg.jpg");
   background-size: cover;
   color: white;
-  font-family: "Outfit", sans-serif;
+  font-family: "Roboto", serif;
   font-weight: 300;
 }
 
@@ -16,14 +16,16 @@ header {
   margin: 0 auto;
 }
 
-
+h1, h2, h3 {
+    font-family: "Outfit", sans-serif;
+}
 
 #logo img {
   width: 15%;
   margin: 4em 0;
 }
 
-/* Welcome page */
+/* ----- Welcome page ----- */
 
 #instructions {
   width: 70%;
@@ -73,7 +75,7 @@ input[type="checkbox"] {
 }
 
 #check label {
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 #proceed button {
@@ -102,42 +104,68 @@ footer {
   height: 10vh;
 }
 
-/* Exam page */
 
-.quiz-container {
-  font-family: "robot" sans-serif;
-  max-width: 900%;
-  margin: 0 auto;
-  padding: 16px;
+
+/* ----- Exam page ----- */
+
+#timer {
+    float: right;
 }
-.quiz-container .timer {
+
+#exam {
+    text-align: center;
+}
+
+#question {
+    font-size: 4em;
+    font-weight: normal;
+    margin-bottom: 2em;
+}
+
+#timer {
   font-weight: bold;
-  text-align: right;
-}
-.quiz-container .options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
 }
 
+.option {
+    width: 35%;
+    height: 5em;
+    margin: 2em;
+    border-radius: 25px;
+    border: 3px solid white;
+    border-bottom: transparent;
+    background-color: transparent;
+    color: white;
+}
 
-/*Result page */
 
 
 
 
+/* ----- Result page ----- */
 
-/* Feedback page */
+main h1{
+  font-size: 32px;
+  margin: 10px 0;
+}
+main p{
+  
+}
+
+
+
+
+/* ----- Feedback page ----- */
 
 #feedback {
   text-align: center;
   font-size: 1.5em;
   width: 60%;
+  font-family: "Outfit", sans-serif;
 }
 
 #feedbackTitle {
   font-size: 2em;
+  font-family: "Roboto", serif;
 }
 
 #stars {

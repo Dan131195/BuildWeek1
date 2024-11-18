@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox</title>
+    <title>Exam</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,30 +15,43 @@
 </head>
 
 <body>
+
     <header id="logo">
+
         <img src="Assets/Images/epicode_logo.png" alt="logo Epicode" />
+        <div id="timer"></div>
+
     </header>
-    <main>
-      <div class="quiz-container">
-        <h1 id="Checkbox"></h1>
-        <div class="timer"></div>
-        <div class="options"></div>
-        <button class="option"></button>
-        <button class="option"></button>
-        <button class="option"></button>
-        <button class="option"></button>
-      </div>
+
+    <main id="exam">
+
+        <div id="quiz-container">
+
+            <h1 id="question">How can I create a <br> <b>checkbox in HTML?</b></h1>
+
+            <div class="options"></div>
+
+            <button class="option">Opzione 1</button>
+            <button class="option">Opzione 2</button>
+            <button class="option">Opzione 3</button>
+            <button class="option">Opzione 4</button>
+
+        </div>
+
     </main>
 
     <footer>
+
         <div class="footer">
-            <span class="number-of-question"> </span>
+            <span id="QuestionNumber"></span>
         </div>
+
     </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="Assets/Js/exam.js"></script>
+
 </body>
 
 </html>
