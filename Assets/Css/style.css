@@ -16,6 +16,8 @@ header {
   margin: 0 auto;
 }
 
+
+
 #logo img {
   width: 15%;
   margin: 4em 0;
@@ -66,7 +68,6 @@ header {
 
 input[type="checkbox"] {
   cursor: pointer;
-  font: inherit;
   width: 1.5em;
   height: 1.5em;
 }
@@ -103,7 +104,22 @@ footer {
 
 /* Exam page */
 
-
+.quiz-container {
+  font-family: "robot" sans-serif;
+  max-width: 900%;
+  margin: 0 auto;
+  padding: 16px;
+}
+.quiz-container .timer {
+  font-weight: bold;
+  text-align: right;
+}
+.quiz-container .options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
 
 
 /*Result page */
