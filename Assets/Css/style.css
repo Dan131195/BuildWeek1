@@ -6,7 +6,7 @@ body {
   background-image: url("../Images/bg.jpg");
   background-size: cover;
   color: white;
-  font-family: "Roboto", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-weight: 300;
 }
 
@@ -122,6 +122,15 @@ footer {
   font-size: 2em;
 }
 
+#stars {
+    margin: 3em 0 4em 0;
+}
+
+#star {
+    cursor: pointer;
+    margin: 5px;
+}
+
 #feedback input {
   background-color: transparent;
   border: none;
@@ -130,14 +139,7 @@ footer {
   height: 40px;
   font-size: 1em;
   padding-left: 30px;
-}
-
-#stars {
-    margin: 20px;
-}
-
-#star {
-    cursor: pointer;
+  color: white;
 }
 
 #feedback button {
