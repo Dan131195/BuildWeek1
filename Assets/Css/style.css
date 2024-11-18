@@ -53,6 +53,8 @@ header {
 #proceed {
   margin-top: 5em;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 input[type='checkbox'] {
@@ -76,6 +78,16 @@ input[type='checkbox'] {
   background-color: #00ffff;
   box-shadow: 3px 3px 1.2em #00ffff, -3px -3px 1.2em #00ffff;
 }
+
+#errorProceded {
+    color:red;
+    visibility: hidden;
+ }
+ 
+ .isDisplay {
+    visibility: visible !important;
+ }
+ 
 footer {
     height: 10vh;
 }
