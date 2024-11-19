@@ -42,6 +42,12 @@ h3 {
   box-shadow: 3px 3px 1.2em #00ffff, -3px -3px 1.2em #00ffff;
 }
 
+#proceed,
+#check, .check, #results section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 /* ----- Welcome page ----- */
 
@@ -77,13 +83,6 @@ h3 {
 #proceed {
   margin-top: 5em;
   width: 100%;
-}
-
-#proceed,
-#check, .check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 input[type="checkbox"] {
@@ -136,18 +135,14 @@ input[type="checkbox"] {
 
 /* ----- Exam page ----- */
 
-#timer {
-  float: right;
-}
-
 .c-countdown-wrapper {
-  width: 7vw;
-  height: 11vh;
-  font-size: xxx-large;
+  width: 5vw;
+  height: 8vh;
   word-wrap: normal;
   float: right;
   margin-bottom: 1em;
   align-content: center;
+  margin-top: 2em;
 }
 
 #exam,
@@ -159,10 +154,6 @@ input[type="checkbox"] {
   font-size: 3.5em;
   font-weight: normal;
   margin-bottom: 1.5em;
-}
-
-#timer {
-  font-weight: bold;
 }
 
 .option {
@@ -180,11 +171,18 @@ input[type="checkbox"] {
 .option:hover {
   background-color: #d20094;
 }
-
+#confirm {
+  margin-top: 2em;
+  border-radius: 10px;
+}
 #questionNumber {
   margin-top: 3em;
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 1.3em;
+}
+
+.colored {
+  color: #d20094;
 }
 
 /* ----- Result page ----- */
@@ -206,9 +204,6 @@ input[type="checkbox"] {
 }
 
 #results section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-size: 2em;
   height: 50vh;
 }
