@@ -116,6 +116,16 @@ footer {
   float: right;
 }
 
+.c-countdown-wrapper {
+  width: 7vw;
+  height: 11vh;
+  font-size: xxx-large;
+   word-wrap: normal; 
+  float: right;
+  margin-bottom: 1em;
+  align-content: center;
+}
+
 #exam,
 #questionNumber {
   text-align: center;
