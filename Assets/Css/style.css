@@ -80,7 +80,7 @@ h3 {
 }
 
 #proceed,
-#check {
+#check, .check {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -89,12 +89,6 @@ h3 {
 input[type="checkbox"] {
   visibility: hidden;
   display: none;
-}
-
-#check *,
-#check *::before,
-#check *::after {
-  box-sizing: border-box;
 }
 
 #check {
@@ -268,8 +262,8 @@ input[type="checkbox"] {
   font-family: "Roboto", serif;
 }
 
-.stars {
-  margin: 3em 0 4em 0;
+#stars {
+  margin: 2em 0;
 }
 
 .star {
