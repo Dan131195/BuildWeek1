@@ -184,7 +184,9 @@ let numberQuestion = 1;
 const arraySubmitAnswers = [];
 
 function randomQuestion() {
-  flagStateRandom = flagStateRandom ? randomNumber = Math.floor((Math.random() * questions.length)).toFixed() : false;
+  flagStateRandom = flagStateRandom
+    ? (randomNumber = Math.floor(Math.random() * questions.length).toFixed())
+    : false;
   flagStateRandom = randomNumber;
   return flagStateRandom;
 }
@@ -192,9 +194,6 @@ function randomQuestion() {
 randomQuestion();
 
 const theQuestion = () => {
-  //PROVA
-  // randomQuestion();
-  //startTimer();
   const questionHTML = document.getElementById("question");
   questionHTML.innerText = questions[randomNumber].question;
   const questionContaier = document.getElementById("quiz-container");
@@ -211,8 +210,7 @@ const theQuestion = () => {
     answer.setAttribute("onclick", `isCorrect(${i})`);
     questionContaier.appendChild(answer);
   }
-
-}
+};
 
 theQuestion();
 
@@ -225,13 +223,12 @@ const isCorrect = (i) => {
   if (questions[i].incorrect_answers[i] === btnAnswers.innerText) {
     incorrect_answers_number++;
     localStorage.setItem(incorrect_answers_number, "Risposta sbagliata");
-  }
-  else if (questions[i].correct_answer === btnAnswers.innerText) {
+  } else if (questions[i].correct_answer === btnAnswers.innerText) {
     correct_answer_number++;
     localStorage.setItem(correct_answers_number, "Risposta Corretta");
   }
   numberQuestion++;
-}
+};
 
 const nextQuestions = () => {
   if (arraySubmitAnswers.includes(randomNumber)) {
@@ -239,22 +236,21 @@ const nextQuestions = () => {
     randomQuestion();
     nextQuestions();
   }
-
-}
+};
 
 const resetAllAnswers = () => {
   document.querySelectorAll("button:not(#answerConfirm)").forEach((element) => {
     element.remove();
   });
-}
+};
 
 const goToResultPage = () => {
   if (numberQuestion == questions.length + 1) {
-    location.href = 'result.html';
+    location.href = "result.html";
   }
-}
+};
 
-document.getElementById("answerConfirm").addEventListener('click', function () {
+document.getElementById("answerConfirm").addEventListener("click", function () {
   goToResultPage();
   resetAllAnswers();
   nextQuestions();
