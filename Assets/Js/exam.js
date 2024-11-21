@@ -37,7 +37,7 @@ function drawCircle(progress) {
 
 // Funzione per far partire il timer
 function startTimer() {
-  const interval = 1000; // Intervallo di aggiornamento (50 ms)
+  const interval = 50; // Intervallo di aggiornamento (50 ms)
   const totalSteps = (fullTime * 1000) / interval; // Numero totale di aggiornamenti
   let step = 0;
 
@@ -52,23 +52,27 @@ function startTimer() {
     ctx.textAlign = "center";
     ctx.fillText("SECONDS", 100, 78);
     ctx.font = "normal 45px Outfit";
-    ctx.fillText(remainingTime, 100, 118);
+    ctx.fillText(Math.floor(remainingTime), 100, 118);
     ctx.font = "normal 10px Outfit";
     ctx.fillText("REMAINING", 100, 135);
 
     // Fine del timer
     if (remainingTime <= 0) {
-      nextQuestions();
       clearInterval(timer);
       startTimer();
+      resetAllAnswers();
+      nextQuestions();
+      theQuestion();
+      numberQuestion++;
+      document.getElementById("numberQuestion").innerText = numberQuestion;
     }
-    /*
+
     document
       .getElementById("answerConfirm")
       .addEventListener("click", function (e) {
         e.preventDefault();
         clearInterval(timer);
-      });*/
+      });
   }, interval);
 }
 
@@ -180,10 +184,8 @@ let numberQuestion = 1;
 const arraySubmitAnswers = [];
 
 function randomQuestion() {
-  flagStateRandom = flagStateRandom
-    ? (randomNumber = Math.floor(Math.random() * questions.length + 0))
-    : false;
-  //flagStateRandom = randomNumber;
+  flagStateRandom = flagStateRandom ? randomNumber = Math.floor((Math.random() * questions.length)).toFixed() : false;
+  flagStateRandom = randomNumber;
   console.log(flagStateRandom);
   return flagStateRandom;
 }
@@ -193,6 +195,7 @@ randomQuestion();
 const theQuestion = () => {
   //PROVA
   // randomQuestion();
+  //startTimer();
   const questionHTML = document.getElementById("question");
   questionHTML.innerText = questions[randomNumber].question;
   const questionContaier = document.getElementById("quiz-container");
@@ -212,7 +215,8 @@ const theQuestion = () => {
     questionContaier.appendChild(answer);
     console.log(answer);
   }
-};
+
+}
 
 theQuestion();
 
@@ -226,66 +230,42 @@ const isCorrect = (i) => {
     incorrect_answers_number++;
     console.log(incorrect_answers_number);
     localStorage.setItem(incorrect_answers_number, "Risposta sbagliata");
-  } else if (questions[i].correct_answer === btnAnswers.innerText) {
+  }
+  else if (questions[i].correct_answer === btnAnswers.innerText) {
     correct_answer_number++;
     console.log(correct_answers_number);
     localStorage.setItem(correct_answers_number, "Risposta Corretta");
   }
   numberQuestion++;
-};
+}
 
 console.log(flagStateRandom);
 
 const nextQuestions = () => {
-  for (let i = 0; i < arraySubmitAnswers.length; i++) {
-    if (arraySubmitAnswers.includes(randomNumber)) {
-      flagStateRandom = true;
-      randomQuestion();
-      //console.log("YES");
-      //console.log(questions[i].incorrect_answers.length);
-    } else if (arraySubmitAnswers.length == 10) {
-      location.href = "result.html";
-    } else {
-      console.log(randomNumber);
-      //console.log("NO !");
-    }
+  if (arraySubmitAnswers.includes(randomNumber)) {
+    flagStateRandom = true;
+    randomQuestion();
+    nextQuestions();
   }
-};
+
+}
 
 const resetAllAnswers = () => {
   document.querySelectorAll("button:not(#answerConfirm)").forEach((element) => {
     element.remove();
   });
-};
+}
 
-document
-  .getElementById("answerConfirm")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    resetAllAnswers();
-    nextQuestions();
-    theQuestion();
-    startTimer();
-    document.getElementById("numberQuestion").innerText = numberQuestion;
-  });
+const goToResultPage = () => {
+  if (numberQuestion == questions.length + 1) {
+    location.href = 'result.html';
+  }
+}
 
-/*
-const resetAllAnswers = () => {
-  document.querySelectorAll("button:not(#answerConfirm)").forEach((element) => {
-    element.remove();
-  });
-};
-*/
-
-/*
-document
-  .getElementById("answerConfirm")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    clearInterval(timer);
-    resetAllAnswers();
-    nextQuestions();
-    numberQuestion++;
-    document.getElementById("questionNumber").innerText = numberQuestion;
-  });
-*/
+document.getElementById("answerConfirm").addEventListener('click', function () {
+  goToResultPage();
+  resetAllAnswers();
+  nextQuestions();
+  theQuestion();
+  document.getElementById("numberQuestion").innerText = numberQuestion;
+});
