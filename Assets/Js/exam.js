@@ -186,7 +186,6 @@ const arraySubmitAnswers = [];
 function randomQuestion() {
   flagStateRandom = flagStateRandom ? randomNumber = Math.floor((Math.random() * questions.length)).toFixed() : false;
   flagStateRandom = randomNumber;
-  console.log(flagStateRandom);
   return flagStateRandom;
 }
 
@@ -204,16 +203,13 @@ const theQuestion = () => {
   incorrect_answers.push(correct_answer);
   arraySubmitAnswers.push(randomNumber);
   incorrect_answers.sort(() => Math.floor(Math.random() - 0.5));
-  console.log(incorrect_answers);
 
   for (let i = 0; i < incorrect_answers.length; i++) {
-    console.log(i);
     const answer = document.createElement("button");
     answer.innerText = incorrect_answers[i];
     answer.classList.add("option");
     answer.setAttribute("onclick", `isCorrect(${i})`);
     questionContaier.appendChild(answer);
-    console.log(answer);
   }
 
 }
@@ -228,18 +224,14 @@ const isCorrect = (i) => {
   btnAnswers.classList.add("selected");
   if (questions[i].incorrect_answers[i] === btnAnswers.innerText) {
     incorrect_answers_number++;
-    console.log(incorrect_answers_number);
     localStorage.setItem(incorrect_answers_number, "Risposta sbagliata");
   }
   else if (questions[i].correct_answer === btnAnswers.innerText) {
     correct_answer_number++;
-    console.log(correct_answers_number);
     localStorage.setItem(correct_answers_number, "Risposta Corretta");
   }
   numberQuestion++;
 }
-
-console.log(flagStateRandom);
 
 const nextQuestions = () => {
   if (arraySubmitAnswers.includes(randomNumber)) {
@@ -267,5 +259,6 @@ document.getElementById("answerConfirm").addEventListener('click', function () {
   resetAllAnswers();
   nextQuestions();
   theQuestion();
+  startTimer();
   document.getElementById("numberQuestion").innerText = numberQuestion;
 });
