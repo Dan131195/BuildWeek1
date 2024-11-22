@@ -5,7 +5,7 @@ document.getElementById("rate").addEventListener("click", function () {
 document.getElementById("regame").addEventListener("click", function () {
   localStorage.removeItem("correctAnswer");
   localStorage.removeItem("incorrectAnswer");
-  location.href = "exam.html";
+  location.href = "index.html";
 });
 
 // Recupera le risposte salvate
