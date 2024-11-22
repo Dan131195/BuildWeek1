@@ -46,14 +46,14 @@ h3 {
 
 #proceed,
 #check,
-.check, #graphic {
+.check, #graphic, #myChart {
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: space-between;
 }
 
-input[type="checkbox"], .optionContainer input  {
+input[type="checkbox"], .optionContainer input, .visibility  {
   visibility: hidden;
   display: none;
 }
@@ -192,7 +192,7 @@ input[type="checkbox"], .optionContainer input  {
 }
 
 #answerConfirm {
-  margin-top: 2em;
+  margin: 2em 0;
   border-radius: 10px;
 }
 
@@ -229,6 +229,7 @@ input[type="checkbox"], .optionContainer input  {
 #correct,
 #wrong {
   line-height: 0;
+  width: 3.5em;
 }
 
 #correct {
@@ -251,7 +252,7 @@ input[type="checkbox"], .optionContainer input  {
 
 #graphic {
   font-size: 2em;
-  width: 80%;
+  
 }
 #graphic, #resultChart {
   margin: 0 auto;
@@ -263,12 +264,11 @@ input[type="checkbox"], .optionContainer input  {
 }
 
 #result {
-  width: 80%;
   font-weight: bold;
 }
 
-#rate {
-  margin: 2.5em 0 3.5em 36px;
+.btnResult{
+  margin: 2em 1em;
   width: 280px;
   height: 90px;
   background-color: transparent;

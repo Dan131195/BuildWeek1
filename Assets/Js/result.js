@@ -2,43 +2,59 @@ document.getElementById("rate").addEventListener("click", function () {
   location.href = "feedback.html";
 });
 
+document.getElementById("regame").addEventListener("click", function () {
+  localStorage.removeItem("correctAnswer");
+  localStorage.removeItem("incorrectAnswer");
+  location.href = "exam.html";
+});
+
 // Recupera le risposte salvate
-const risposteCorrette =
-  JSON.parse(localStorage.getItem("risposteCorrette")) || [];
-const risposteSbagliate =
-  JSON.parse(localStorage.getItem("risposteSbagliate")) || [];
+const correctAnswer = parseInt(localStorage.getItem("correctAnswer"));
+const incorrectAnswer = parseInt(localStorage.getItem("incorrectAnswer"));
 
-// Calcola i totali
-const totalCorrect = risposteCorrette.length;
-const totalWrong = risposteSbagliate.length;
+const totalQuestions = correctAnswer + incorrectAnswer;
 
-// Evita di contare le domande duplicate
-const totalQuestions = new Set([...risposteCorrette, ...risposteSbagliate])
-  .size;
-
-// Calcola le percentuali
 if (totalQuestions === 0) {
   document.getElementById("percentageCorrect").innerText = "0%";
   document.getElementById("questionsCorrect").innerText =
     "No questions answered";
-
   document.getElementById("percentageWrong").innerText = "0%";
   document.getElementById("questionsWrong").innerText = "No questions answered";
 } else {
-  const percentageCorrect = ((totalCorrect / totalQuestions) * 100).toFixed(1);
-  const percentageWrong = ((totalWrong / totalQuestions) * 100).toFixed(1);
+  const percentageCorrect = parseFloat(
+    ((correctAnswer / totalQuestions) * 100).toFixed(1)
+  );
+  const percentageWrong = ((incorrectAnswer / totalQuestions) * 100).toFixed(1);
+
+  console.log("Percentage Correct:", percentageCorrect);
+  console.log("Percentage Wrong:", percentageWrong);
 
   document.getElementById(
     "percentageCorrect"
   ).innerText = `${percentageCorrect}%`;
   document.getElementById(
     "questionsCorrect"
-  ).innerText = `${totalCorrect}/${totalQuestions} questions`;
+  ).innerText = `${correctAnswer}/${totalQuestions} questions`;
 
   document.getElementById("percentageWrong").innerText = `${percentageWrong}%`;
   document.getElementById(
     "questionsWrong"
-  ).innerText = `${totalWrong}/${totalQuestions} questions`;
+  ).innerText = `${incorrectAnswer}/${totalQuestions} questions`;
+
+  if (percentageCorrect > 60) {
+    document.querySelector(
+      "section"
+    ).innerHTML = `<p id="result">Congratulations!<br><strong id="text">You passed the exam.</strong></p>
+        <p id="resultText">
+        We'll send you the certificate in a few minutes. <br>
+        Check your email (including promotions / spam folder)
+        </p>`;
+  } else {
+    document.querySelector(
+      "section"
+    ).innerHTML = `<p id="result">OPS!<br><strong id="text">You don't pass the exam.</strong></p>
+        <p id="resultText"> Check or Try Again Quiz</p>`;
+  }
 }
 
 // Configura il grafico
@@ -47,10 +63,11 @@ const ctx = document.getElementById("resultChart").getContext("2d");
 new Chart(ctx, {
   type: "doughnut",
   data: {
+    //labels: ["Correct", "Wrong"],
     datasets: [
       {
-        data: [totalCorrect, totalWrong],
-        backgroundColor: ["#d20094", "#00ffff"], // Colori per corrette e sbagliate
+        data: [correctAnswer, incorrectAnswer],
+        backgroundColor: ["#00ffff", "#d20094"], // Colori per corrette e sbagliate
         borderColor: ["#FFFFFF", "#FFFFFF"], // Bordo bianco
         borderWidth: 2,
       },
@@ -58,5 +75,10 @@ new Chart(ctx, {
   },
   options: {
     responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+    },
   },
 });

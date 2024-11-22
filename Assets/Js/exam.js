@@ -9,7 +9,7 @@ const ctx = canvas.getContext("2d");
 
 // Configurazione del cerchio
 const radius = 60; // Raggio del cerchio
-const fullTime = 5; // Durata del timer
+const fullTime = 30; // Durata del timer
 let remainingTime = fullTime;
 
 // Reset delle risposte salvate
@@ -63,9 +63,9 @@ function startTimer() {
     ctx.font = "normal 10px Outfit";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
-    ctx.fillText("SECONDS", 100, 78);
-    ctx.font = "normal 45px Outfit";
-    ctx.fillText(Math.floor(remainingTime), 100, 118);
+    ctx.fillText("SECONDS", 100, 70);
+    ctx.font = "normal 50px Outfit";
+    ctx.fillText(Math.floor(remainingTime), 100, 116);
     ctx.font = "normal 10px Outfit";
     ctx.fillText("REMAINING", 100, 135);
 
@@ -73,7 +73,10 @@ function startTimer() {
     if (remainingTime <= 0) {
       if (arraySubmitAnswers.length < questions.length) {
         risposteSbagliate.push(questions[randomNumber].question);
-        localStorage.setItem("risposteSbagliate", JSON.stringify(risposteSbagliate));
+        localStorage.setItem(
+          "risposteSbagliate",
+          JSON.stringify(risposteSbagliate)
+        );
         clearInterval(timer);
         startTimer();
         resetAllAnswers();
@@ -83,7 +86,10 @@ function startTimer() {
         document.getElementById("numberQuestion").innerText = numberQuestion;
       } else {
         risposteSbagliate.push(questions[randomNumber].question);
-        localStorage.setItem("risposteSbagliate", JSON.stringify(risposteSbagliate));
+        localStorage.setItem(
+          "risposteSbagliate",
+          JSON.stringify(risposteSbagliate)
+        );
         numberQuestion++;
         goToResultPage();
       }
@@ -95,7 +101,6 @@ function startTimer() {
       .addEventListener("click", function (e) {
         e.preventDefault();
         clearInterval(timer);
-
       });
   }, interval);
 }
@@ -202,93 +207,133 @@ const questions = [
   },
 ];
 
-function resetQuizData() {
-  localStorage.setItem("risposteCorrette", JSON.stringify([]));
-  localStorage.setItem("risposteSbagliate", JSON.stringify([]));
-}
-
+let flagStateRandom = true;
 let randomNumber = 0;
 let numberQuestion = 1;
 const arraySubmitAnswers = [];
 
-// Mostrare una domanda casuale
 function randomQuestion() {
-  do {
-    randomNumber = Math.floor(Math.random() * questions.length);
-  } while (arraySubmitAnswers.includes(randomNumber));
-  return randomNumber;
+  flagStateRandom = flagStateRandom
+    ? (randomNumber = Math.floor(Math.random() * questions.length).toFixed())
+    : false;
+  flagStateRandom = randomNumber;
+  return flagStateRandom;
 }
 
+randomQuestion();
+
 const theQuestion = () => {
-  document.getElementById("answerConfirm").setAttribute("disabled", "false");
+  document.getElementById("answerConfirm").setAttribute("disabled", "true");
+  const incorrect_answers = [...questions[randomNumber].incorrect_answers];
   const questionHTML = document.getElementById("question");
   questionHTML.innerText = questions[randomNumber].question;
-  const questionContainer = document.getElementById("options");
-  const incorrect_answers = [...questions[randomNumber].incorrect_answers];
+  const questionContainer = document.getElementById("quiz-container");
+  //const incorrect_answers = questions[randomNumber].incorrect_answers;
   const correct_answer = questions[randomNumber].correct_answer;
-
   incorrect_answers.push(correct_answer);
-  incorrect_answers.sort(() => Math.random() - 0.5);
-
-  incorrect_answers.forEach((answer, i) => {
+  arraySubmitAnswers.push(randomNumber);
+  incorrect_answers.sort(() => Math.floor(Math.random() - 0.5));
+  /*
+    for (let i = 0; i < incorrect_answers.length; i++) {
+        const answer = document.createElement("button");
+        answer.innerText = incorrect_answers[i];
+        answer.classList.add("option");
+        answer.setAttribute("onclick", `isCorrect(${i})`);
+        questionContaier.appendChild(answer);
+    }
+  */
+    for (let i = 0; i < incorrect_answers.length; i++) {
     const divOption = document.createElement("label");
     divOption.classList.add("optionContainer");
     const radio = document.createElement("input");
     const option = document.createElement("div");
     option.classList.add("option");
-
     divOption.appendChild(radio);
     divOption.appendChild(option);
     radio.setAttribute("type", "radio");
     radio.setAttribute("name", "option");
-    option.innerText = answer;
-
-    divOption.setAttribute("onclick", `isCorrect('${answer}')`);
+    option.innerText = incorrect_answers[i];
+    divOption.setAttribute("onclick", `isCorrect('${i}')`);
     questionContainer.appendChild(divOption);
-  });
-
-  arraySubmitAnswers.push(randomNumber);
+  };
 };
 
 theQuestion();
 
-const isCorrect = (selectedAnswer) => {
-  if (questions[randomNumber].correct_answer === selectedAnswer) {
-    if (!risposteCorrette.includes(questions[randomNumber].question)) {
-      risposteCorrette.push(questions[randomNumber].question);
-    }
-  } else {
-    if (!risposteSbagliate.includes(questions[randomNumber].question)) {
-      risposteSbagliate.push(questions[randomNumber].question);
-    }
-  }
+let incorrect_answers_number = 0;
+let correct_answer_number = 0;
+let flagQuestion;
+//const btnAnswerChoise = document.querySelector(".option > .selected");
 
-  localStorage.setItem("risposteCorrette", JSON.stringify(risposteCorrette));
-  localStorage.setItem("risposteSbagliate", JSON.stringify(risposteSbagliate));
+const isSelected = (i) => {
+  const btnNotAnswers = document.querySelectorAll(".option");
+  btnNotAnswers.forEach((element) => {
+    element.classList.remove("selected");
+  });
+  const btnAnswers = document.querySelectorAll("label")[i];
+  btnAnswers.classList.add("selected");
+  if (btnAnswers.classList.contains("selected")) {
+    localStorage.setItem("isCorrect", i);
+  } else {
+    localStorage.removeItem("isCorrect");
+  }
+};
+
+const isCorrect = (i) => {
+  const InAnswerIncorrect = questions[randomNumber].incorrect_answers;
+  const InAnswerCorrect = questions[randomNumber].correct_answer;
 
   document.getElementById("answerConfirm").removeAttribute("disabled");
-  const btnAnswers = document.querySelectorAll(".option")[i];
-};
+  const btnAnswers = document.querySelectorAll("label")[i];
+  isSelected(i);
 
-const goToResultPage = () => {
-  location.href = "result.html";
-};
-
-document.getElementById("answerConfirm").addEventListener("click", function () {
-  resetAllAnswers();
-  if (arraySubmitAnswers.length < questions.length) {
-    randomQuestion();
-    theQuestion();
-    startTimer();
-    numberQuestion++;
-    document.getElementById("numberQuestion").innerText = numberQuestion;
-  } else {
-    goToResultPage();
+  if (localStorage.getItem("isCorrect") == i) {
+    if (InAnswerIncorrect.includes(btnAnswers.innerText)) {
+      flagQuestion = false;
+    } else if (InAnswerCorrect.includes(btnAnswers.innerText)) {
+      flagQuestion = true;
+    }
   }
-});
+  localStorage.removeItem("isCorrect");
+};
+
+const nextQuestions = () => {
+  if (arraySubmitAnswers.includes(randomNumber)) {
+    flagStateRandom = true;
+    randomQuestion();
+    nextQuestions();
+  }
+};
 
 const resetAllAnswers = () => {
-  document.querySelectorAll(".optionContainer").forEach((element) => {
+  document.querySelectorAll("label").forEach((element) => {
     element.remove();
   });
 };
+
+const goToResultPage = () => {
+  if (
+    numberQuestion === questions.length + 1 ||
+    arraySubmitAnswers.length === questions.length
+  ) {
+    location.href = "result.html";
+  }
+};
+
+document.getElementById("answerConfirm").addEventListener("click", function () {
+  if (flagQuestion) {
+    correct_answer_number++;
+
+    localStorage.setItem("correctAnswer", correct_answer_number);
+  } else {
+    incorrect_answers_number++;
+    localStorage.setItem("incorrectAnswer", incorrect_answers_number);
+  }
+  startTimer();
+  goToResultPage();
+  resetAllAnswers();
+  nextQuestions();
+  theQuestion();
+  numberQuestion++;
+  document.getElementById("numberQuestion").innerText = numberQuestion;
+});
